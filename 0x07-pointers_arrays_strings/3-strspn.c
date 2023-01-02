@@ -1,23 +1,31 @@
 #include "main.h"
 /**
-* leet - function that encode a string
-*@str:string that will be encoded
-*Return:returns encoded string
+*_strspn - search the number of bytes in the initial
+* segment of s which consist only of bytes from accept
+*@s:segment targeted
+*@accept:reference bytes container
+*
+*Return:returns the number of bytes in the initial
+* segment of s which consist only of bytes from accept
 */
-
-char *leet(char *str)
+unsigned int _strspn(char *s, char *accept)
 {
-	int index1 = 0, index2;
-	char leet[8] = {'O', 'L', '?', 'E', 'A', '?', '?', 'T'};
+	unsigned int bytes = 0;
+	int i;
 
-	while (str[++index1])
+	while (*s)
 	{
-		for (index2 = 0; index2 <= 7; index2++)
+		for (i = 0; accept[i]; i++)
 		{
-			if (str[index1] == leet[index2] ||
-			 str[index1] - 32 == leet[index2])
-				str[index1] = index2 + '0';
+			if (accept[i] == *s)
+			{
+				bytes++;
+				break;
+			}
+			else if ((accept[i + 1]) == '\0')
+				return (bytes);
 		}
+		s++;
 	}
-	return (str);
+	return (bytes);
 }
